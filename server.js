@@ -1,70 +1,39 @@
 const express = require('express');
+const bodyParser = require('body-parser');
+const bcrypt = require('bcryptjs');
 const path = require('path');
+
 const app = express();
+const users = [];
 
-// Middleware pour gérer les requêtes POST
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static('public'));
 
-// Liste des utilisateurs en mémoire (à remplacer par une vraie base de données)
-let users = [
-  { username: 'john123', email: 'john@example.com', password: 'password123' }
-];
+app.get('/', (req, res) => res.sendFile(__dirname + '/public/index.html'));
+app.get('/login', (req, res) => res.sendFile(__dirname + '/public/login.html'));
+app.get('/register', (req, res) => res.sendFile(__dirname + '/public/register.html'));
 
-// Serve les fichiers statiques
-app.use(express.static(path.join(__dirname, 'public')));
-
-// Route pour la page d'accueil
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
-
-// Route pour la page de connexion
-app.get("/login", (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'login.html'));
-});
-
-// Route pour la page d'inscription
-app.get("/register", (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'register.html'));
-});
-
-// Route pour traiter l'inscription d'un nouvel utilisateur
-app.post("/register", (req, res) => {
+app.post('/register', async (req, res) => {
   const { username, email, password } = req.body;
+  const validUsername = /^[a-z0-9]+$/.test(username);
+  if (!validUsername) return res.status(400).send("Pseudo invalide");
 
-  // Vérification simple de l'unicité de l'email
-  const userExists = users.some(user => user.email === email);
-  if (userExists) {
-    return res.status(400).send("Cet email est déjà utilisé.");
-  }
+  const exists = users.find(u => u.email === email);
+  if (exists) return res.status(400).send("Email déjà utilisé");
 
-  // Ajout de l'utilisateur à la liste (en mémoire)
-  users.push({ username, email, password });
-  res.redirect("/login");
+  const hashed = await bcrypt.hash(password, 10);
+  users.push({ username, email, password: hashed });
+  res.redirect('/login');
 });
 
-// Route pour traiter la connexion d'un utilisateur
-app.post("/login", (req, res) => {
+app.post('/login', async (req, res) => {
   const { email, password } = req.body;
-
-  const user = users.find(u => u.email === email && u.password === password);
-  if (!user) {
-    return res.status(400).send("Email ou mot de passe incorrect.");
+  const user = users.find(u => u.email === email);
+  if (!user || !(await bcrypt.compare(password, user.password))) {
+    return res.status(401).send("Mot de passe incorrect");
   }
 
-  // Une fois l'utilisateur connecté, rediriger vers le profil
-  res.redirect("/profile");
+  res.redirect(`/profile.html?user=${user.username}`);
 });
 
-// Route pour afficher le profil de l'utilisateur
-app.get("/profile", (req, res) => {
-  // À ce stade, tu devrais probablement gérer la session de l'utilisateur
-  res.sendFile(path.join(__dirname, 'public', 'profile.html'));
-});
-
-// Démarrer le serveur
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Serveur démarré sur http://localhost:${PORT}`);
-});
+app.listen(3000, () => console.log('Serveur lancé sur http://localhost:3000'));
