@@ -1,25 +1,22 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profil - YAMA Social</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>Profil</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <div class="profile-container">
-        <h2>Mon Profil</h2>
-        <img src="profile-pic-placeholder.jpg" alt="Photo de profil">
-        <p>Nom d'utilisateur: <span id="username">JohnDoe</span></p>
-        <p>Email: <span id="email">johndoe@example.com</span></p>
-        <button>Modifier mon profil</button>
-        <div class="posts">
-            <h3>Mes Publications</h3>
-            <div id="posts-list">
-                <!-- Les publications seront chargées ici -->
-            </div>
-        </div>
-    </div>
-    <script src="script.js"></script>
+<body class="gradient">
+  <div class="container">
+    <h2>Bienvenue sur ton profil</h2>
+    <p id="username"></p>
+    <p>Tu es connecté !</p>
+    <a href="index.html" class="btn">Accueil</a>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const user = params.get("user");
+    document.getElementById("username").innerText = "Pseudo: " + user;
+  </script>
 </body>
 </html>
