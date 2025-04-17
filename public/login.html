@@ -2,18 +2,19 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Connexion</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Connexion - YAMA Social</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="gradient">
-  <div class="container">
-    <h2>Se connecter</h2>
-    <form method="POST" action="/login">
-      <input type="email" name="email" placeholder="Email" required>
-      <input type="password" name="password" placeholder="Mot de passe" required>
-      <button type="submit" class="btn">Connexion</button>
+<body class="animated-bg">
+  <div class="form-container">
+    <h2>Connexion</h2>
+    <form id="loginForm">
+      <input type="email" id="loginEmail" placeholder="Email" required>
+      <input type="password" id="loginPassword" placeholder="Mot de passe" required>
+      <button type="submit">Se connecter</button>
     </form>
-    <p><a href="register.html">Pas encore de compte ? S’inscrire</a></p>
+    <p>Pas encore inscrit ? <a href="register.html">Créer un compte</a></p>
   </div>
+  <script src="js/script.js"></script>
 </body>
 </html>
