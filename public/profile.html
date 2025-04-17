@@ -2,17 +2,21 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Créer une publication</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Profil utilisateur - YAMA Social</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="gradient">
-  <div class="container">
-    <h2>Créer une publication</h2>
-    <form action="/post" method="POST" enctype="multipart/form-data">
-      <textarea name="content" placeholder="Texte..." rows="4" required></textarea>
-      <input type="file" name="media" accept="image/*,video/*">
-      <button type="submit" class="btn">Publier</button>
-    </form>
+<body class="animated-bg">
+  <div class="profile-container">
+    <img id="profilePicture" src="default-profile.png" alt="Photo de profil" class="profile-pic">
+    <h2 id="profileUsername">@utilisateur</h2>
+    <p id="followerCount">0 abonnés</p>
+    <button id="followButton">Suivre</button>
+    
+    <div id="userPosts">
+      <h3>Publications</h3>
+      <div id="postsContainer"></div>
+    </div>
   </div>
+  <script src="js/script.js"></script>
 </body>
 </html>
