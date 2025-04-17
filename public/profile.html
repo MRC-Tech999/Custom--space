@@ -2,21 +2,17 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Profil</title>
+  <title>Créer une publication</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body class="gradient">
   <div class="container">
-    <h2>Bienvenue sur ton profil</h2>
-    <p id="username"></p>
-    <p>Tu es connecté !</p>
-    <a href="index.html" class="btn">Accueil</a>
+    <h2>Créer une publication</h2>
+    <form action="/post" method="POST" enctype="multipart/form-data">
+      <textarea name="content" placeholder="Texte..." rows="4" required></textarea>
+      <input type="file" name="media" accept="image/*,video/*">
+      <button type="submit" class="btn">Publier</button>
+    </form>
   </div>
-
-  <script>
-    const params = new URLSearchParams(window.location.search);
-    const user = params.get("user");
-    document.getElementById("username").innerText = "Pseudo: " + user;
-  </script>
 </body>
 </html>
