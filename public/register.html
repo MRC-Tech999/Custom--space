@@ -2,19 +2,20 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Inscription</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Créer un compte - YAMA Social</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="gradient">
-  <div class="container">
+<body class="animated-bg">
+  <div class="form-container">
     <h2>Créer un compte</h2>
-    <form method="POST" action="/register">
-      <input type="text" name="username" placeholder="Pseudo (lettres minuscules & chiffres)" required>
-      <input type="email" name="email" placeholder="Email" required>
-      <input type="password" name="password" placeholder="Mot de passe" required>
-      <button type="submit" class="btn">S’inscrire</button>
+    <form id="registerForm">
+      <input type="email" id="registerEmail" placeholder="Email" required>
+      <input type="text" id="registerUsername" placeholder="Nom d'utilisateur (lettres et chiffres uniquement)" required>
+      <input type="password" id="registerPassword" placeholder="Mot de passe" required>
+      <button type="submit">S'inscrire</button>
     </form>
-    <p><a href="login.html">Déjà inscrit ? Se connecter</a></p>
+    <p>Déjà un compte ? <a href="login.html">Se connecter</a></p>
   </div>
+  <script src="js/script.js"></script>
 </body>
 </html>
