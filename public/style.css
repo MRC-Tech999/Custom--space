@@ -1,57 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap');
-
-:root {
-  --gradient-theme: linear-gradient(135deg, #ff69b4, #ff8ccf, #ffa3e0, #ffc0f0, #ffe1fa);
-  --input-bg: #fff;
-  --btn-color: #ff69b4;
-  --text-color: #222;
-}
-
-body {
-  font-family: 'Poppins', sans-serif;
-  background: var(--gradient-theme);
-  background-size: 300% 300%;
-  animation: gradientShift 6s ease infinite;
+body.gradient {
+  background: linear-gradient(135deg, #ff66b2, #ffccff, #66ccff, #cc99ff);
+  background-size: 400% 400%;
+  animation: gradientShift 8s ease infinite;
+  font-family: 'Segoe UI', sans-serif;
+  color: #fff;
+  margin: 0;
   display: flex;
-  justify-content: center;
   align-items: center;
-  flex-direction: column;
-  min-height: 100vh;
-  padding: 30px;
-  color: var(--text-color);
-}
-
-.container {
-  background: var(--input-bg);
-  padding: 30px;
-  border-radius: 15px;
-  box-shadow: 0 0 15px rgba(255, 105, 180, 0.4);
-  width: 100%;
-  max-width: 400px;
-  animation: fadeIn 1.5s ease-in-out;
-}
-
-input, button {
-  width: 100%;
-  padding: 12px;
-  margin: 10px 0;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  outline: none;
-  font-size: 16px;
-}
-
-button {
-  background-color: var(--btn-color);
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.3s ease;
-}
-
-button:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 10px #ff69b4aa;
+  justify-content: center;
+  height: 100vh;
 }
 
 @keyframes gradientShift {
@@ -60,7 +17,39 @@ button:hover {
   100% { background-position: 0% 50%; }
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+.container {
+  text-align: center;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 0 10px #fff3;
+  width: 90%;
+  max-width: 400px;
+}
+
+input, .btn {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+input {
+  background: #fff;
+  color: #000;
+}
+
+.btn {
+  background-color: #ff66b2;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #ff3399;
+  transform: scale(1.05);
 }
