@@ -1,4 +1,13 @@
-const transporter = require('./transporter');  // Importer le transporteur depuis le fichier transporter.js
+const nodemailer = require('nodemailer');
+
+// Créer un transporteur Nodemailer avec Gmail comme service
+const transporter = nodemailer.createTransport({
+    service: 'gmail',  // Utiliser Gmail comme service SMTP
+    auth: {
+        user: 'epay39209@gmail.com',  // Ton adresse Gmail
+        pass: 'bfic klia qoqs esxl',  // Ton mot de passe Gmail ou mot de passe d'application
+    },
+});
 
 module.exports = (req, res) => {
     if (req.method === 'POST') {
@@ -21,6 +30,7 @@ module.exports = (req, res) => {
             res.status(200).json({ message: 'Email envoyé!' });
         });
     } else {
+        // Si la méthode HTTP n'est pas POST
         res.status(404).json({ error: 'Page non trouvée.' });
     }
 };
