@@ -1,0 +1,15 @@
+{
+  "name": "evolution-pay",
+  "version": "1.0.0",
+  "description": "Projet d'inscription avec confirmation par email",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "nodemailer": "^6.7.1",
+    "vercel": "^20.0.0"
+  },
+  "author": "",
+  "license": "ISC"
+}
